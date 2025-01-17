@@ -1,40 +1,30 @@
-# Samsara Interview Prep
+# My Application Portal
 
-A structured learning environment for interview preparation, focusing on deep understanding rather than solution memorization.
+This project merges two core functionalities:
+1. **Screenshot Processor**: Upload job-application screenshots, parse with an LLM, and store relevant job details in Supabase.
+2. **Quick Cover**: Generate quick cover letters with an LLM, referencing your resume data and relevant stats.
 
-## Repository Structure
+## Tech Stack
 
-```
-.
-├── string-parsing/          # String manipulation and parsing problems
-├── arrays/                  # Array manipulation and algorithms
-├── dynamic-programming/     # DP concepts and problems
-├── system-design/          # System design questions and concepts
-├── concurrency/            # Threading and concurrency problems
-└── behavioral/             # Project deep-dives and behavioral prep
-```
+- **TypeScript** + **Node.js** for the backend
+- **GraphQL** (Apollo Server) for schema, queries, and mutations
+- **React** (TypeScript) for the front-end
+- **Supabase** for database + file storage
+- **OpenAI** (or Anthropic) for LLM calls
+- Deployed to **Vercel** (optional step)
 
-## Problem Template Structure
+## Features
 
-Each problem directory contains:
-- `problem.md` - Problem description, constraints, examples
-- `hints.md` - Progressive hints (look here before solutions)
-- `approach.md` - Detailed problem-solving approach
-- `solution.py` - Commented solution implementation
-- `test_solution.py` - Test cases and edge cases
+- Upload .png/.jpg screenshots of job postings
+- Extract job info using AI
+- Store that info in Supabase
+- Generate dynamic cover letters referencing your stats
+- Simple UI with Times New Roman text, navy headings, and a beige background
 
-## How to Use This Repo
+## Setup
 
-1. Read `problem.md` thoroughly
-2. Attempt to solve without hints
-3. If stuck, read hints progressively
-4. Only check solution after multiple attempts
-5. Run and expand test cases
-6. Write your own explanation in `my_notes.md`
-
-## Testing
-
-Run tests for a specific problem:
-```bash
-python -m pytest path/to/problem/test_solution.py
-``` 
+1. **Clone** and install dependencies:
+   ```bash
+   git clone <this_repo_url> my-application-portal
+   cd my-application-portal
+   npm install
