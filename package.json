@@ -1,0 +1,25 @@
+{
+  "name": "arkon-2",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "bash scripts/devStart.sh",
+    "build": "npm run build --workspaces",
+    "start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/debug": "^4.1.12",
+    "@types/react-dom": "^19.0.3",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/pg": "^8.11.10",
+    "pg": "^8.13.1"
+  }
+}

@@ -1,0 +1,27 @@
+/* Additional theming if needed.
+   Using Times, a navy palette, on a light beige background
+*/
+
+body {
+    background-color: #f5f5dc;
+    color: #001f3f;
+    font-family: "Times New Roman", Times, serif;
+  }
+  
+  h1, h2, h3 {
+    color: #001f3f;
+  }
+  
+  button {
+    background-color: #001f3f;
+    color: #f5f5dc;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-family: "Times New Roman", Times, serif;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #001944;
+  }
+  
