@@ -14,7 +14,7 @@ const StatsView: React.FC = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div style={{marginTop:'1rem'}}>
+    <div style={{ marginTop: '1rem' }}>
       <h3>Current Statistics</h3>
       <p>{data.jobStats}</p>
     </div>

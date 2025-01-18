@@ -1,11 +1,14 @@
-import client from '../openaiClient';
-import debug from 'debug';
+import openai from '../openaiClient';
 
-const log = debug('arkon:screenshot');
-
-export async function screenshotService(base64Image: string) {
+export async function screenshotService(base64Image: string): Promise<{
+  title: string;
+  company: string;
+  location: string;
+  salary_range: string;
+  screenshot_url: string;
+}> {
   try {
-    const response = await client.chat.completions.create({
+    const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
         {
@@ -13,7 +16,7 @@ export async function screenshotService(base64Image: string) {
           content: [
             {
               type: "text",
-              text: "Extract job details from this image. Return ONLY a clean JSON object with these exact keys: Job Title, Company Name, Location, Salary Range. Use empty strings for missing fields. Return in exactly this format, with no additional text or formatting:\n{\"Job Title\": \"Software Engineer\",\"Company Name\": \"Example Corp\",\"Location\": \"San Francisco, CA\",\"Salary Range\": \"$120,000-$180,000\"}"
+              text: "Extract job details from this image. Return a raw JSON object (no markdown, no backticks) with these exact keys: Job Title, Company Name, Location, Salary Range. Use empty strings for missing fields. Example format: {\"Job Title\": \"Software Engineer\",\"Company Name\": \"Example Corp\",\"Location\": \"San Francisco, CA\",\"Salary Range\": \"$120,000-$180,000\"}"
             },
             {
               type: "image_url",
@@ -24,39 +27,31 @@ export async function screenshotService(base64Image: string) {
           ]
         }
       ],
-      max_tokens: 500
+      max_tokens: 300
     });
 
-    const text = response.choices[0].message?.content?.trim() || '{}';
-    log('OpenAI Response:', text);
+    const content = response.choices[0].message?.content || "";
     
-    try {
-      const json = JSON.parse(text);
-      return {
-        title: json['Job Title'] || '',
-        company: json['Company Name'] || '',
-        location: json['Location'] || '',
-        salary_range: json['Salary Range'] || '',
-        screenshot_url: base64Image,
-      };
-    } catch (err) {
-      log("Error parsing JSON response:", err);
-      return {
-        title: '',
-        company: '',
-        location: '',
-        salary_range: '',
-        screenshot_url: '',
-      };
-    }
-  } catch (err) {
-    log("Screenshot analysis error:", err);
+    // Remove any markdown formatting or extra whitespace
+    const jsonStr = content.replace(/```json|```|\n/g, "").trim();
+    
+    const result = JSON.parse(jsonStr);
+    
     return {
-      title: '',
-      company: '',
-      location: '',
-      salary_range: '',
-      screenshot_url: '',
+      title: result["Job Title"] || "",
+      company: result["Company Name"] || "",
+      location: result["Location"] || "",
+      salary_range: result["Salary Range"] || "",
+      screenshot_url: base64Image // Store the original image
+    };
+  } catch (err) {
+    console.error("Screenshot processing error:", err);
+    return {
+      title: "",
+      company: "",
+      location: "",
+      salary_range: "",
+      screenshot_url: ""
     };
   }
 }

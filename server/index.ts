@@ -52,6 +52,20 @@ log.system('Static files directory:', CLIENT_DIST);
 // Serve static files from the React app
 app.use(express.static(CLIENT_DIST));
 
+interface ResponseBody {
+  singleResult?: {
+    data: any;
+    errors?: any;
+  };
+  kind?: string;
+  initialResult?: {
+    data: any;
+    errors?: any;
+  };
+  data?: any;
+  errors?: any;
+}
+
 // Create Apollo server with logging
 const server = new ApolloServer({
   schema,
@@ -70,15 +84,17 @@ const server = new ApolloServer({
           let responseData = null;
           let responseErrors = null;
 
-          if ('singleResult' in response.body) {
-            responseData = response.body.singleResult.data;
-            responseErrors = response.body.singleResult.errors;
-          } else if ('kind' in response.body && response.body.kind === 'incremental') {
-            responseData = response.body.initialResult.data;
-            responseErrors = response.body.initialResult.errors;
+          const body = response.body as ResponseBody;
+
+          if ('singleResult' in body) {
+            responseData = body.singleResult?.data;
+            responseErrors = body.singleResult?.errors;
+          } else if ('kind' in body && body.kind === 'incremental') {
+            responseData = body.initialResult?.data;
+            responseErrors = body.initialResult?.errors;
           } else {
-            responseData = response.body.data;
-            responseErrors = response.body.errors;
+            responseData = body.data;
+            responseErrors = body.errors;
           }
             
           log.apollo('Response:', {
@@ -91,6 +107,15 @@ const server = new ApolloServer({
     }
   }]
 });
+
+// Fix the response handling
+const extractTextFromResponse = async (response: Response) => {
+  const responseData = await response.json();
+  return {
+    data: responseData.data,
+    errors: responseData.errors
+  };
+};
 
 // Start the Apollo server and initialize database
 (async () => {

@@ -45,4 +45,19 @@ coverage/
 .DS_Store
 *.pem
 .vercel
-.netlify 
+.netlify
+
+# API Keys & Secrets
+**/config/secrets.ts
+**/config/keys.ts
+
+# Local SSL
+*.key
+*.crt
+
+# Database
+*.sqlite
+*.db
+
+# Docker overrides
+docker-compose.override.yml 

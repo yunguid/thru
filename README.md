@@ -10,7 +10,7 @@ This project merges two core functionalities:
 - **GraphQL** (Apollo Server) for schema, queries, and mutations
 - **React** (TypeScript) + **Tailwind** for the front-end
 - **PostgreSQL** (Supabase's Postgres image) for database
-- **OpenAI GPT-4** for LLM processing
+- **OpenAI GPT-4o** for LLM processing
 - **Docker** for database containerization
 - **Vite** for frontend build
 
@@ -18,6 +18,7 @@ This project merges two core functionalities:
 
 - Upload .png/.jpg screenshots of job postings
 - Extract job info using GPT-4 Vision
+
 - Store that info in PostgreSQL
 - Generate dynamic cover letters
 - Clean UI with Tailwind styling

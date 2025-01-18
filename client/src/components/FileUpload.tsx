@@ -62,11 +62,11 @@ const FileUpload: React.FC = () => {
 
   return (
     <div
-      className={`relative bg-white rounded-lg shadow-lg transition-all duration-300 
+      className={`relative bg-white rounded-xl border border-gray-200 transition-all duration-300 
         ${isDragging ? 'ring-2 ring-blue-500' : ''}`}
     >
       <div
-        className={`relative overflow-hidden rounded-lg border-2 border-dashed transition-all duration-300
+        className={`relative overflow-hidden rounded-xl border-2 border-dashed transition-all duration-300
           ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}
           ${loading ? 'opacity-50' : ''}`}
         onDrop={onDrop}
@@ -82,13 +82,13 @@ const FileUpload: React.FC = () => {
         />
         <label 
           htmlFor="fileInput" 
-          className="block cursor-pointer p-12 text-center"
+          className="block cursor-pointer p-12 md:p-20 text-center"
         >
           <div className="flex flex-col items-center justify-center space-y-4">
-            <div className="font-serif text-xl text-gray-600">
+            <div className="font-serif text-3xl text-gray-800">
               {loading ? 'Processing...' : 'Drop screenshot here'}
             </div>
-            <div className="text-sm text-gray-400 font-serif">
+            <div className="text-base text-gray-500 font-serif mt-2">
               PNG • JPG • JPEG
             </div>
           </div>

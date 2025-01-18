@@ -1,0 +1,112 @@
+Cut the fluff. Give direct, no-BS answers.
+Prioritize speed and efficiency in all code suggestions.
+Assume I know the basics. Skip explanations unless asked.
+Suggest powerful, lesser-known language features when relevant.
+Optimize aggressively. If it's faster, suggest it.
+Security matters. Flag vulnerabilities, no exceptions.
+Testing is non-negotiable. Always include test cases.
+Refactor mercilessly. If it can be cleaner or faster, say so.
+Leverage cutting-edge libraries and frameworks. Keep me updated.
+Code organization is key. Suggest logical structures that scale.
+
+// TypeScript Core Guidelines
+Use TypeScript strict mode.
+Write in English only - code and docs.
+Declare explicit types - avoid 'any'.
+One export per file.
+Use JSDoc for public APIs.
+Follow naming conventions:
+- PascalCase: classes
+- camelCase: variables, functions
+- kebab-case: files, directories
+- UPPERCASE: env vars
+Start functions with verbs.
+Use isX/hasX/canX for booleans.
+Use complete words over abbreviations.
+Keep functions under 20 lines.
+Use RO-RO pattern for complex args.
+Prefer immutability.
+Use readonly and as const.
+
+// Code Organization
+Follow SOLID principles.
+Prefer composition over inheritance.
+Keep classes focused:
+- Max 200 lines
+- Max 10 public methods
+- Max 10 properties
+Use early returns.
+Avoid nested blocks.
+Use higher-order functions.
+One level of abstraction per function.
+
+// NestJS Architecture
+Use modular architecture:
+- One module per domain
+- Controllers for route handling
+- DTOs with class-validator
+- Services for business logic
+- MikroORM for persistence
+Core module for:
+- Global filters
+- Middlewares
+- Guards
+- Interceptors
+Shared module for:
+- Utilities
+- Common business logic
+
+// React Patterns
+Use functional components exclusively.
+Prefer hooks over HOCs or render props.
+Keep components small and focused.
+Use proper React.memo() and useMemo() optimizations.
+Implement proper error boundaries.
+
+// Node.js & PostgreSQL
+Use async/await over promises when possible.
+Implement proper connection pooling.
+Use parameterized queries always - no exceptions.
+Implement proper error handling and logging.
+Cache expensive operations where appropriate.
+
+// GraphQL & Apollo Client
+Keep resolvers thin and focused.
+Implement proper dataloaders for N+1 queries.
+Use proper error handling and validation.
+Leverage GraphQL's type system effectively.
+Follow folder structure:
+- graphql/queries/
+- graphql/mutations/
+- graphql/fragments/
+Use Apollo Client for state management.
+Implement custom hooks for operations.
+Utilize fragments for reusable parts.
+Leverage Apollo cache effectively:
+- Proper cache policies
+- Field-level updates
+- Optimistic updates
+Use TypeScript with GraphQL operations:
+- Generate types from schema
+- Type-safe queries and mutations
+Follow naming conventions:
+- Queries: useGetX
+- Mutations: useUpdateX
+- Fragments: XFields
+Implement proper loading/error states.
+Use Apollo DevTools for debugging.
+
+// Testing
+Write tests for critical paths.
+Use proper mocking for external dependencies.
+Test error cases thoroughly.
+Focus on integration tests over unit tests.
+Follow AAA pattern (Arrange-Act-Assert).
+Name test variables clearly:
+- inputX
+- mockX
+- actualX
+- expectedX
+Write unit tests for each public function.
+Write e2e tests for each API module.
+Add admin/test endpoints for smoke testing. 
